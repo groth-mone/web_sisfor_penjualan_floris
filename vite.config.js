@@ -8,4 +8,12 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    server: {
+        host: '0.0.0.0',
+        port: 5173,
+        hmr: {
+            host: process.env.APP_URL || 'localhost',
+        },
+    },
+    base: process.env.APP_URL || '/',
 });
