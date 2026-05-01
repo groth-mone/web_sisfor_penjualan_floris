@@ -11,7 +11,7 @@ dir="ltr">
   content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
   <title>Adelia Florist | AUTH LOGIN</title>
-
+<base href="{{ url('/') }}/">
   <meta name="description" content="" />
 
   <!-- Favicon -->
