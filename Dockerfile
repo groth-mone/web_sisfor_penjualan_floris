@@ -1,20 +1,15 @@
-FROM php:8.2-fpm
+FROM php:8.2-cli
 
-RUN apt-get update && apt-get install -y \
-    libpng-dev \
-    libjpeg-dev \
-    libfreetype6-dev \
-    zip \
-    unzip \
-    git \
-    curl \
-    && docker-php-ext-install pdo_mysql gd
-
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-WORKDIR /var/www/html
+WORKDIR /app
 
 COPY . .
+
+# PERBAIKAN: Instal libmariadb-dev dan pdo_mysql untuk MySQL
+RUN apt-get update && apt-get install -y \
+    unzip git curl libmariadb-dev \
+    && docker-php-ext-install pdo pdo_mysql
+
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN composer install --no-dev --optimize-autoloader
 
