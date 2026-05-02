@@ -1,17 +1,21 @@
-FROM php:8.1-cli
+FROM php:8.2-fpm
 
-WORKDIR /app
-
-COPY . .
-
-# PERBAIKAN: Instal libmariadb-dev dan pdo_mysql untuk MySQL
 RUN apt-get update && apt-get install -y \
-    unzip git curl libmariadb-dev \
-    && docker-php-ext-install pdo pdo_mysql
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    zip \
+    unzip \
+    git \
+    curl \
+    && docker-php-ext-install pdo_mysql gd
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+WORKDIR /var/www/html
+
+COPY . .
+
 RUN composer install --no-dev --optimize-autoloader
 
-# PERBAIKAN: Jalankan migrasi otomatis sebelum server menyala
-CMD sh -c "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=\${PORT:-10000}"
+CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT
