@@ -4,12 +4,14 @@ WORKDIR /app
 
 COPY . .
 
+# PERBAIKAN: Instal libmariadb-dev dan pdo_mysql untuk MySQL
 RUN apt-get update && apt-get install -y \
-    unzip git curl libpq-dev \
-    && docker-php-ext-install pdo pdo_pgsql
+    unzip git curl libmariadb-dev \
+    && docker-php-ext-install pdo pdo_mysql
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN composer install --no-dev --optimize-autoloader
 
-CMD sh -c "php artisan serve --host=0.0.0.0 --port=\${PORT:-10000}"
+# PERBAIKAN: Jalankan migrasi otomatis sebelum server menyala
+CMD sh -c "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=\${PORT:-10000}"
