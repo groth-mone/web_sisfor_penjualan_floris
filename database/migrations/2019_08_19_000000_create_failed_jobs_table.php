@@ -1,5 +1,4 @@
 <?php
-// database/migrations/2026_05_02_000004_create_failed_jobs_table.php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -7,10 +6,10 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('failed_jobs', function (Blueprint $table) {
-            $table->id();
+            $table->id(); // bigint unsigned auto increment
             $table->string('uuid')->unique();
             $table->text('connection');
             $table->text('queue');
@@ -20,7 +19,7 @@ return new class extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('failed_jobs');
     }
