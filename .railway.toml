@@ -1,0 +1,10 @@
+[build]
+builder = "DOCKERFILE"
+
+[deploy]
+startCommand = "sh -c 'php artisan config:clear && php artisan migrate --force && nginx && php-fpm -F'"
+
+[deploy.healthcheck]
+command = "curl --fail http://localhost:8080/ || exit 1"
+interval = 30
+timeout = 10
