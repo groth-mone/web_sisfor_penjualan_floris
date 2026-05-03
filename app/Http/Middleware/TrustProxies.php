@@ -9,11 +9,13 @@ class TrustProxies extends Middleware
 {
     /**
      * The trusted proxies for this application.
+     * 
+     * Di Railway, semua proxy harus dipercaya karena menggunakan load balancer
      *
      * @var array<int, string>|string|null
      */
-    protected $proxies;
-
+    protected $proxies = '*';  // ← UBAH: Percaya semua proxy
+    
     /**
      * The headers that should be used to detect proxies.
      *
