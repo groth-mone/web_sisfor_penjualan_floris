@@ -15,7 +15,7 @@ class FloristSampleSeeder extends Seeder
         // -------------------------------------------------------
         // 1. users
         // -------------------------------------------------------
-        DB::table('users')->insert([
+        DB::table('users')->updateOrInsert([
             [
                 'id'         => 1,
                 'name'       => 'Dani Trisna',
@@ -32,7 +32,7 @@ class FloristSampleSeeder extends Seeder
         // -------------------------------------------------------
         // 2. biodata
         // -------------------------------------------------------
-        DB::table('biodata')->insert([
+        DB::table('biodata')->updateOrInsert([
             [
                 'id_biodata' => 1,
                 'id_user'    => 1,
@@ -45,7 +45,7 @@ class FloristSampleSeeder extends Seeder
         // -------------------------------------------------------
         // 3. kategori
         // -------------------------------------------------------
-        DB::table('kategori')->insert([
+        DB::table('kategori')->updateOrInsert([
             [
                 'id_kategori'    => 5,
                 'nama_kategori'  => 'Bunga Segar',
@@ -83,7 +83,7 @@ class FloristSampleSeeder extends Seeder
         // -------------------------------------------------------
         // 4. supplier
         // -------------------------------------------------------
-        DB::table('supplier')->insert([
+        DB::table('supplier')->updateOrInsert([
             [
                 'id_supplier'       => 3,
                 'nama_supplier'     => 'PT Mawar Indah',
@@ -105,7 +105,7 @@ class FloristSampleSeeder extends Seeder
         // -------------------------------------------------------
         // 5. barang
         // -------------------------------------------------------
-        DB::table('barang')->insert([
+        DB::table('barang')->updateOrInsert([
             [
                 'id_barang'     => 6,
                 'id_kategori'   => 5,
@@ -181,7 +181,7 @@ class FloristSampleSeeder extends Seeder
         // -------------------------------------------------------
         // 6. produk
         // -------------------------------------------------------
-        DB::table('produk')->insert([
+        DB::table('produk')->updateOrInsert([
             [
                 'id_produk'         => 3,
                 'kode_produk'       => 'PRD001',
@@ -213,7 +213,7 @@ class FloristSampleSeeder extends Seeder
         // -------------------------------------------------------
         // 7. detail_produk
         // -------------------------------------------------------
-        DB::table('detail_produk')->insert([
+        DB::table('detail_produk')->updateOrInsert([
             ['id_detail' => 23, 'id_produk' => 3, 'id_barang' => 7,  'jumlah_pakai' => 0.50, 'created_at' => '2026-04-29 13:45:01', 'updated_at' => '2026-04-29 13:45:01'],
             ['id_detail' => 24, 'id_produk' => 3, 'id_barang' => 6,  'jumlah_pakai' => 7.00, 'created_at' => '2026-04-29 13:45:01', 'updated_at' => '2026-04-29 13:45:01'],
             ['id_detail' => 25, 'id_produk' => 3, 'id_barang' => 10, 'jumlah_pakai' => 1.50, 'created_at' => '2026-04-29 13:45:01', 'updated_at' => '2026-04-29 13:45:01'],
@@ -228,7 +228,7 @@ class FloristSampleSeeder extends Seeder
         // -------------------------------------------------------
         // 8. pembelian
         // -------------------------------------------------------
-        DB::table('pembelian')->insert([
+        DB::table('pembelian')->updateOrInsert([
             [
                 'id_pembelian'          => 1,
                 'id_supplier'           => 3,
@@ -246,7 +246,7 @@ class FloristSampleSeeder extends Seeder
         // -------------------------------------------------------
         // 9. pembelian_detail
         // -------------------------------------------------------
-        DB::table('pembelian_detail')->insert([
+        DB::table('pembelian_detail')->updateOrInsert([
             ['id_pembelian_detail' => 1, 'id_pembelian' => 1, 'id_barang' => 6,  'harga_beli' => '6000',  'harga_jual' => '8000',  'jml_pembelian' => 60, 'tanggal_exp' => null],
             ['id_pembelian_detail' => 2, 'id_pembelian' => 1, 'id_barang' => 7,  'harga_beli' => '18000', 'harga_jual' => '25000', 'jml_pembelian' => 20, 'tanggal_exp' => null],
             ['id_pembelian_detail' => 3, 'id_pembelian' => 1, 'id_barang' => 8,  'harga_beli' => '10000', 'harga_jual' => '15000', 'jml_pembelian' => 15, 'tanggal_exp' => null],
@@ -257,7 +257,7 @@ class FloristSampleSeeder extends Seeder
         // -------------------------------------------------------
         // 10. penjualan
         // -------------------------------------------------------
-        DB::table('penjualan')->insert([
+        DB::table('penjualan')->updateOrInsert([
             [
                 'id_penjualan'          => 1,
                 'pelanggan'             => 'Nadia Putri',
@@ -329,7 +329,7 @@ class FloristSampleSeeder extends Seeder
         // -------------------------------------------------------
         // 11. penjualan_detail
         // -------------------------------------------------------
-        DB::table('penjualan_detail')->insert([
+        DB::table('penjualan_detail')->updateOrInsert([
             [
                 'id_penjualan_detail'       => 1,
                 'id_penjualan'              => 1,
@@ -383,7 +383,7 @@ class FloristSampleSeeder extends Seeder
         // -------------------------------------------------------
         // 12. penjualan_pembayaran
         // -------------------------------------------------------
-        DB::table('penjualan_pembayaran')->insert([
+        DB::table('penjualan_pembayaran')->updateOrInsert([
             ['id_penjualan_pembayaran' => 1, 'id_penjualan' => 1, 'metode_pembayaran' => 'Transfer', 'metode_detail' => 'BCA',  'nominal_pembayaran' => '100000', 'tanggal_pembayaran' => '2026-04-27'],
             ['id_penjualan_pembayaran' => 2, 'id_penjualan' => 1, 'metode_pembayaran' => 'Tunai',    'metode_detail' => null,   'nominal_pembayaran' => '175000', 'tanggal_pembayaran' => '2026-04-28'],
             ['id_penjualan_pembayaran' => 3, 'id_penjualan' => 2, 'metode_pembayaran' => 'Transfer', 'metode_detail' => 'DANA', 'nominal_pembayaran' => '390000', 'tanggal_pembayaran' => '2026-04-28'],
@@ -393,7 +393,7 @@ class FloristSampleSeeder extends Seeder
         // -------------------------------------------------------
         // 13. pemakaian_bahan
         // -------------------------------------------------------
-        DB::table('pemakaian_bahan')->insert([
+        DB::table('pemakaian_bahan')->updateOrInsert([
             ['id_pemakaian_bahan' => 1,  'id_penjualan_detail' => 3, 'id_barang' => 6,  'qty_pakai' => 12.00, 'keterangan' => 'Sample racik produk premium',                          'created_at' => '2026-04-29 09:25:03', 'updated_at' => '2026-04-29 09:25:03'],
             ['id_pemakaian_bahan' => 2,  'id_penjualan_detail' => 3, 'id_barang' => 7,  'qty_pakai' => 1.00,  'keterangan' => 'Sample racik produk premium',                          'created_at' => '2026-04-29 09:25:03', 'updated_at' => '2026-04-29 09:25:03'],
             ['id_pemakaian_bahan' => 3,  'id_penjualan_detail' => 3, 'id_barang' => 8,  'qty_pakai' => 1.00,  'keterangan' => 'Sample racik produk premium',                          'created_at' => '2026-04-29 09:25:03', 'updated_at' => '2026-04-29 09:25:03'],
